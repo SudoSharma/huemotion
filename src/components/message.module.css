@@ -1,0 +1,22 @@
+.message {
+  font-weight: 700;
+  font-style: italic;
+  text-align: center;
+  color: #00fff1;
+  font-size: 4rem;
+  max-width: 275px;
+}
+
+/* Medium screens */
+@media all and (min-width: 426px) {
+  .message {
+    font-size: 5rem;
+  }
+}
+
+/* Large screens */
+@media all and (min-width: 768px) {
+  .message {
+    max-width: 690px;
+  }
+}
