@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import Message from "../components/message.js"
-import StartButton from "../components/startbutton.js"
 import "typeface-montserrat"
 import "bootstrap/dist/css/bootstrap.min.css"
 import { Container, Col, Row, Button } from "react-bootstrap"
@@ -39,13 +38,21 @@ class HuemotionApp extends Component {
       >
         <Row className="h-100">
           <Col className="h-100 d-flex flex-column justify-content-center align-items-center">
-            <Message isInferencing={isInferencing} />
+            <Message isInferencing={isInferencing} emotion={emotion} />
             {button}
           </Col>
         </Row>
       </Container>
     )
   }
+}
+
+function StartButton(props) {
+  return (
+    <Button variant="light" onClick={props.onClick}>
+      Start
+    </Button>
+  )
 }
 
 function StopButton(props) {
