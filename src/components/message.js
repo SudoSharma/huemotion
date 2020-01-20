@@ -13,6 +13,36 @@ class EmotionMessage extends Component {
     this.props.onEmotionChange(newEmotion)
   }
 
+  cleanUpVideo = () => {
+    clearInterval(this.intervalID)
+
+    const video = this.video.current
+    let stream = video.srcObject
+    let tracks = stream.getTracks()
+
+    tracks.forEach(track => {
+      track.stop()
+    })
+
+    video.srcObject = null
+  }
+
+  applyGrayFilter = frame => {
+    const l = frame.data.length / 4
+    for (var i = 0; i < l; i++) {
+      var grey =
+        (frame.data[i * 4 + 0] +
+          frame.data[i * 4 + 1] +
+          frame.data[i * 4 + 2]) /
+        3
+
+      frame.data[i * 4 + 0] = grey
+      frame.data[i * 4 + 1] = grey
+      frame.data[i * 4 + 2] = grey
+      return frame
+    }
+  }
+
   async getEmotions(url, imgData) {
     try {
       const response = await fetch(url, {
@@ -24,8 +54,9 @@ class EmotionMessage extends Component {
       const newEmotion = await response.json()
       this.handleChange(newEmotion)
     } catch (err) {
-      console.log("Response Error: " + err)
-      this.handleChange("yikes")
+      this.handleChange("oops")
+      this.cleanUpVideo()
+      alert(err)
     }
   }
 
@@ -44,19 +75,7 @@ class EmotionMessage extends Component {
       this.intervalID = setInterval(() => {
         context.drawImage(video, 0, 0, canvas.width, canvas.height)
         let frame = context.getImageData(0, 0, canvas.width, canvas.height)
-        const l = frame.data.length / 4
-
-        for (var i = 0; i < l; i++) {
-          var grey =
-            (frame.data[i * 4 + 0] +
-              frame.data[i * 4 + 1] +
-              frame.data[i * 4 + 2]) /
-            3
-
-          frame.data[i * 4 + 0] = grey
-          frame.data[i * 4 + 1] = grey
-          frame.data[i * 4 + 2] = grey
-        }
+        frame = this.applyGrayFilter(frame)
 
         context.putImageData(frame, 0, 0)
         canvas.toBlob(blob => {
@@ -74,17 +93,7 @@ class EmotionMessage extends Component {
 
   componentWillUnmount() {
     try {
-      clearInterval(this.intervalID)
-
-      const video = this.video.current
-      let stream = video.srcObject
-      let tracks = stream.getTracks()
-
-      tracks.forEach(track => {
-        track.stop()
-      })
-
-      video.srcObject = null
+      this.cleanUpVideo()
     } catch (err) {
       console.log(err)
     }
