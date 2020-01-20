@@ -5,6 +5,7 @@
   color: #00fff1;
   font-size: 4rem;
   max-width: 275px;
+  text-transform: capitalize;
 }
 
 .video,
