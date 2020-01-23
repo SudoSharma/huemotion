@@ -46,22 +46,24 @@ class EmotionMessage extends Component {
   async getEmotions(url, imgData) {
     try {
       const response = await fetch(url, {
-        method: "PUT",
-        // mode: "no-cors",
+        method: "POST",
         body: imgData,
       })
-      console.log("Response: " + (await response.json()))
       const result = await response.json()
+      console.log("Response: " + result.body)
       this.handleChange(result.body)
     } catch (err) {
       this.handleChange("oops")
-      this.cleanUpVideo()
-      alert(err)
+      console.log(err)
+      try {
+        this.cleanUpVideo()
+      } catch (cleanUpErr) {
+        console.log(cleanUpErr)
+      }
     }
   }
 
   async componentDidMount() {
-    // const API = "https://mmdu9l6ff1.execute-api.us-west-1.amazonaws.com/Prod/"
     const API =
       "https://2o6hpkpf64.execute-api.us-west-1.amazonaws.com/default/getEmotions"
     const video = this.video.current
@@ -83,7 +85,7 @@ class EmotionMessage extends Component {
         canvas.toBlob(blob => {
           let imgData = new FormData()
           imgData.append("imgData", blob)
-          this.getEmotions(API, blob)
+          this.getEmotions(API, imgData)
         })
       }, 1000)
     } catch (err) {
