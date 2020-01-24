@@ -50,8 +50,8 @@ class EmotionMessage extends Component {
         body: imgData,
       })
       const result = await response.json()
-      console.log("Response: " + result.body)
-      this.handleChange(result.body)
+      console.log("Result: " + result)
+      this.handleChange(result)
     } catch (err) {
       this.handleChange("oops")
       console.log(err)
@@ -64,8 +64,7 @@ class EmotionMessage extends Component {
   }
 
   async componentDidMount() {
-    const API =
-      "https://2o6hpkpf64.execute-api.us-west-1.amazonaws.com/default/getEmotions"
+    const API = "https://blo5s52vq5.execute-api.us-west-1.amazonaws.com/prod"
     const video = this.video.current
     const canvas = this.canvas.current
     const context = canvas.getContext("2d")
