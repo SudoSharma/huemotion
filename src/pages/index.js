@@ -1,8 +1,9 @@
 import React, { Component } from "react"
 import Message from "../components/message.js"
 import "typeface-montserrat"
+import "typeface-pacifico"
 import "bootstrap/dist/css/bootstrap.min.css"
-import { Container, Col, Row, Button } from "react-bootstrap"
+import { Navbar, Container, Col, Row, Button } from "react-bootstrap"
 
 class HuemotionApp extends Component {
   constructor(props) {
@@ -43,6 +44,9 @@ class HuemotionApp extends Component {
         fluid="true"
         className={`h-100 ${isInferencing ? emotion : "gradient-bkg"}`}
       >
+        <Navbar bg="transparent" fixed="top" className="justify-content-center">
+          <Navbar.Text className="title">Huemotion</Navbar.Text>
+        </Navbar>
         <Row className="h-100">
           <Col className="h-100 d-flex flex-column justify-content-center align-items-center">
             <Message
@@ -53,17 +57,18 @@ class HuemotionApp extends Component {
             {button}
           </Col>
         </Row>
+        <Navbar bg="transparent" fixed="bottom">
+          <Container className="justify-content-center">
+            <Navbar.Text className="details">What is this?</Navbar.Text>
+          </Container>
+        </Navbar>
       </Container>
     )
   }
 }
 
 const StartButton = props => {
-  return (
-    <Button variant="light" onClick={props.onClick}>
-      Start
-    </Button>
-  )
+  return <Button className="record" onClick={props.onClick}></Button>
 }
 
 const StopButton = props => {

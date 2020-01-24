@@ -68,3 +68,39 @@ body {
     background-position: 0% 50%;
   }
 }
+
+.title {
+  font-family: "Pacifico";
+  font-size: 1.5rem;
+  color: white !important;
+}
+
+.details {
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-style: italic;
+  color: black !important;
+}
+
+.record {
+  height: 40px;
+  width: 40px;
+  background: #09ff00 !important;
+  border-radius: 100% !important;
+  border-color: white !important;
+  border-width: 2px !important;
+  -webkit-animation: ripple 2s linear infinite;
+  -moz-animation: ripple 2s linear infinite;
+  animation: ripple 2s linear infinite;
+}
+
+@keyframes ripple {
+  0% {
+    box-shadow: 0 0 0 0rem rgba(255, 255, 255, 0.1),
+      0 0 0 0.5rem rgba(255, 255, 255, 0.1), 0 0 0 1rem rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 0 0.5rem rgba(255, 255, 255, 0.1),
+      0 0 0 1rem rgba(255, 255, 255, 0.1), 0 0 0 1.5rem rgba(255, 255, 255, 0);
+  }
+}

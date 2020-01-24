@@ -7,6 +7,7 @@ class EmotionMessage extends Component {
     this.video = React.createRef()
     this.canvas = React.createRef()
     this.intervalID = 0
+    this.state = { emotionQueue: [] }
   }
 
   handleChange = newEmotion => {
@@ -23,8 +24,6 @@ class EmotionMessage extends Component {
     tracks.forEach(track => {
       track.stop()
     })
-
-    video.srcObject = null
   }
 
   applyGrayFilter = frame => {
@@ -50,8 +49,8 @@ class EmotionMessage extends Component {
         body: imgData,
       })
       const result = await response.json()
-      console.log("Result: " + result)
       this.handleChange(result)
+      console.log("Current Emotion: " + result)
     } catch (err) {
       this.handleChange("oops")
       console.log(err)
@@ -119,7 +118,7 @@ class EmotionMessage extends Component {
   }
 }
 
-function GreetingMessage(props) {
+function GreetingMessage() {
   return <h1 className={messageStyles.message}>How are you feeling today?</h1>
 }
 
