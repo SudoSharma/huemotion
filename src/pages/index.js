@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import Message from "../components/message.js"
+import DetailsModal from "../components/detailsModal.js"
 import "typeface-montserrat"
 import "typeface-pacifico"
 import "bootstrap/dist/css/bootstrap.min.css"
@@ -11,22 +12,19 @@ class HuemotionApp extends Component {
     this.state = { isInferencing: false, emotion: "neutral" }
   }
 
-  handleStartClick = () => {
-    this.setState({ isInferencing: true })
-  }
+  handleStartClick = () => this.setState({ isInferencing: true })
 
   handleStopClick = () => {
     this.setState({ isInferencing: false })
     this.handleEmotionChange("neutral")
   }
 
-  handleEmotionChange = newEmotion => {
-    this.setState({ emotion: newEmotion })
-  }
+  handleEmotionChange = newEmotion => this.setState({ emotion: newEmotion })
 
   render() {
     const isInferencing = this.state.isInferencing
     const emotion = this.state.emotion
+    const show = this.state.show
     let button
 
     if (isInferencing) {
@@ -59,7 +57,7 @@ class HuemotionApp extends Component {
         </Row>
         <Navbar bg="transparent" fixed="bottom">
           <Container className="justify-content-center">
-            <Navbar.Text className="details">What is this?</Navbar.Text>
+            <DetailsModal />
           </Container>
         </Navbar>
       </Container>
@@ -72,11 +70,7 @@ const StartButton = props => {
 }
 
 const StopButton = props => {
-  return (
-    <Button variant="light" onClick={props.onClick}>
-      Stop
-    </Button>
-  )
+  return <Button className="stop-record" onClick={props.onClick}></Button>
 }
 
 const RestartButton = props => {

@@ -75,18 +75,23 @@ body {
   color: white !important;
 }
 
-.details {
-  font-size: 0.75rem;
-  font-weight: 600;
-  font-style: italic;
-  color: black !important;
-}
-
 .record {
   height: 40px;
   width: 40px;
   background: #09ff00 !important;
   border-radius: 100% !important;
+  border-color: white !important;
+  border-width: 2px !important;
+  -webkit-animation: ripple 2s linear infinite;
+  -moz-animation: ripple 2s linear infinite;
+  animation: ripple 2s linear infinite;
+}
+
+.stop-record {
+  height: 40px;
+  width: 40px;
+  background: red !important;
+  border-radius: 25% !important;
   border-color: white !important;
   border-width: 2px !important;
   -webkit-animation: ripple 2s linear infinite;
