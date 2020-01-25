@@ -83,7 +83,7 @@ class EmotionMessage extends Component {
         canvas.toBlob(blob => {
           let imgData = new FormData()
           imgData.append("imgData", blob)
-          // this.getEmotions(API, imgData)
+          this.getEmotions(API, imgData)
         })
       }, 333) // Roughly 3fps
     } catch (err) {
