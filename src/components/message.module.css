@@ -15,6 +15,10 @@
   display: none;
 }
 
+.loader {
+  margin-bottom: 5rem;
+}
+
 /* Medium screens */
 @media all and (min-width: 426px) {
   .message {

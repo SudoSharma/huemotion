@@ -4,3 +4,25 @@
   font-style: italic;
   color: white !important;
 }
+
+.detail-header {
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+}
+
+.detail-body {
+  padding-top: 0 !important;
+}
+
+.detail-content {
+  padding-top: 0.75rem;
+  padding-bottom: 1rem;
+}
+
+.detail-footer {
+  padding-bottom: 1rem;
+}
+
+.divider {
+  padding: 0 1rem;
+}

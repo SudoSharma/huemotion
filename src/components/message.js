@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import messageStyles from "./message.module.css"
+import { BarLoader } from "react-spinners"
 
 class EmotionMessage extends Component {
   constructor(props) {
@@ -7,7 +8,7 @@ class EmotionMessage extends Component {
     this.video = React.createRef()
     this.canvas = React.createRef()
     this.intervalID = 0
-    this.state = { emotionQueue: [] }
+    this.state = { loading: true }
   }
 
   handleChange = newEmotion => {
@@ -49,9 +50,11 @@ class EmotionMessage extends Component {
         body: imgData,
       })
       const result = await response.json()
+      this.setState({ loading: false })
       this.handleChange(result)
       console.log("Current Emotion: " + result)
     } catch (err) {
+      this.setState({ loading: false })
       this.handleChange("oops")
       console.log(err)
       try {
@@ -87,6 +90,7 @@ class EmotionMessage extends Component {
         })
       }, 333) // Roughly 3fps
     } catch (err) {
+      this.setState({ loading: false })
       console.log(err)
       alert("Please enable video to use huemotion!")
       this.handleChange("oops")
@@ -102,7 +106,19 @@ class EmotionMessage extends Component {
   }
 
   render() {
-    const emotion = this.props.emotion
+    let emotion = this.props.emotion
+    let loading = this.state.loading
+    let displayMessage
+
+    if (loading) {
+      displayMessage = (
+        <div className={messageStyles.loader}>
+          <BarLoader color="#00fff1" width="200px" />
+        </div>
+      )
+    } else {
+      displayMessage = <h1 className={messageStyles.message}>{emotion}</h1>
+    }
 
     return (
       <div>
@@ -112,14 +128,10 @@ class EmotionMessage extends Component {
           className={messageStyles.video}
         ></video>
         <canvas ref={this.canvas} className={messageStyles.canvas}></canvas>
-        <h1 className={messageStyles.message}>{emotion}</h1>
+        {displayMessage}
       </div>
     )
   }
-}
-
-function GreetingMessage() {
-  return <h1 className={messageStyles.message}>How are you feeling today?</h1>
 }
 
 function Message(props) {
@@ -133,6 +145,10 @@ function Message(props) {
   } else {
     return <GreetingMessage />
   }
+}
+
+function GreetingMessage() {
+  return <h1 className={messageStyles.message}>How are you feeling today?</h1>
 }
 
 export default Message

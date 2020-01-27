@@ -24,7 +24,15 @@ body {
 }
 
 /* Inferencing */
-.neutral {
+.neutral,
+.happiness,
+.surprise,
+.sadness,
+.anger,
+.disgust,
+.fear,
+.contempt,
+.oops {
   background: linear-gradient(-45deg, #b6bfd9, #89b0a9, #617a97, #435d65);
   background-size: 400% 400%;
   -webkit-animation: Gradient 15s ease infinite;
@@ -75,6 +83,22 @@ body {
   color: white !important;
 }
 
+.title-inline {
+  font-family: "Pacifico";
+  font-size: 1.25rem;
+}
+
+.close {
+  color: white !important;
+  font-size: 2rem !important;
+  font-weight: 200 !important;
+}
+
+.modal-content {
+  color: white !important;
+  background: black !important;
+}
+
 .record {
   height: 40px;
   width: 40px;
@@ -87,12 +111,30 @@ body {
   animation: ripple 2s linear infinite;
 }
 
+.record:hover {
+  background: #00df00 !important;
+}
+
 .stop-record {
   height: 40px;
   width: 40px;
   background: red !important;
-  border-radius: 25% !important;
+  border-radius: 100% !important;
   border-color: white !important;
+  border-width: 2px !important;
+  -webkit-animation: ripple 2s linear infinite;
+  -moz-animation: ripple 2s linear infinite;
+  animation: ripple 2s linear infinite;
+}
+
+.stop-record:hover {
+  background: #d20000 !important;
+}
+
+.refresh {
+  border-radius: 100% !important;
+  font-size: 1rem !important;
+  padding-bottom: 9px !important;
   border-width: 2px !important;
   -webkit-animation: ripple 2s linear infinite;
   -moz-animation: ripple 2s linear infinite;

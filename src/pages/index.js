@@ -1,10 +1,11 @@
 import React, { Component } from "react"
+import { IoMdArrowRoundBack } from "react-icons/io"
 import Message from "../components/message.js"
 import DetailsModal from "../components/detailsModal.js"
 import "typeface-montserrat"
 import "typeface-pacifico"
 import "bootstrap/dist/css/bootstrap.min.css"
-import { Navbar, Container, Col, Row, Button } from "react-bootstrap"
+import { Navbar, Container, Col, Row, Button, Fade } from "react-bootstrap"
 
 class HuemotionApp extends Component {
   constructor(props) {
@@ -75,8 +76,8 @@ const StopButton = props => {
 
 const RestartButton = props => {
   return (
-    <Button variant="dark" onClick={props.onClick}>
-      Try Again
+    <Button variant="warning" className="refresh" onClick={props.onClick}>
+      <IoMdArrowRoundBack />
     </Button>
   )
 }
