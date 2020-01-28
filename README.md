@@ -8,8 +8,8 @@ Images are captured from a web cam and sent to an AWS Lambda function which serv
 
 ## URLs
 
-App: https://huemotion.sudosharma.com
-Lambda Function Source Code: https://github.com/SudoSharma/huemotion_backend
+- App: https://huemotion.sudosharma.com
+- Lambda Function Source Code: https://github.com/SudoSharma/huemotion_backend
 
 ## Goals
 
